@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="docker," />
 
 
 
@@ -83,13 +83,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="404 Not Found：该页无法显示">
-<meta property="og:url" content="https://xudaqian1.github.io/404/index.html">
+<meta name="description" content="参考、学习地址 docker基础 镜像（image）：一个容器（包括各种服务和环境）的模版 镜像相关命令：1234567docker images :列出本地所有镜像docker images -aq:列出所有镜像，包括中间层镜像的id(a:列出中间层，q:列出镜像id)docker search  -s 30 imageName:所有镜像仓库中start大于30的镜像docker pull im">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker构建镜像">
+<meta property="og:url" content="https://xudaqian1.github.io/2020/05/18/docker%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/index.html">
 <meta property="og:site_name" content="Hinux的博客">
-<meta property="article:published_time" content="2020-05-17T08:45:16.000Z">
-<meta property="article:modified_time" content="2020-05-17T08:51:17.772Z">
+<meta property="og:description" content="参考、学习地址 docker基础 镜像（image）：一个容器（包括各种服务和环境）的模版 镜像相关命令：1234567docker images :列出本地所有镜像docker images -aq:列出所有镜像，包括中间层镜像的id(a:列出中间层，q:列出镜像id)docker search  -s 30 imageName:所有镜像仓库中start大于30的镜像docker pull im">
+<meta property="article:published_time" content="2020-05-18T14:55:23.000Z">
+<meta property="article:modified_time" content="2020-05-23T03:20:01.859Z">
 <meta property="article:author" content="Hinux">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://xudaqian1.github.io/404/"/>
+  <link rel="canonical" href="https://xudaqian1.github.io/2020/05/18/docker构建镜像/"/>
 
 
 
 
 
-  <title>404 Not Found：该页无法显示 | Hinux的博客</title>
+  <title>docker构建镜像 | Hinux的博客</title>
   
 
 
@@ -136,7 +139,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -271,51 +274,213 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xudaqian1.github.io/hinux.github.io/2020/05/18/docker%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hinux">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hinux.github.io/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hinux的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">404 Not Found：该页无法显示</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <!DOCTYPE HTML>
-<html>
-<head>
-  <meta http-equiv="content-type" content="text/html;charset=utf-8;">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="robots" content="all">
-  <meta name="robots" content="index,follow">
-  <link rel="stylesheet" type="text/css" href="https://qzone.qq.com/gy/404/style/404style.css">
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/hinux.github.io/atom.xml" title="Hinux的博客" type="application/atom+xml">
-</head>
-<body>
-  <script type="text/plain" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="/" homepagename="回到我的主页">
-  </script>
-  <script src="https://qzone.qq.com/gy/404/data.js" charset="utf-8"></script>
-  <script src="https://qzone.qq.com/gy/404/page.js" charset="utf-8"></script>
-</body>
-</html>
-
-
+          <h1 class="post-title" itemprop="name headline">docker构建镜像</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-18T22:55:23+08:00">
+                2020-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/hinux.github.io/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">系统运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  262
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p><a href="https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md" target="_blank" rel="noopener">参考、学习地址</a></p>
+<h1 id="docker基础"><a href="#docker基础" class="headerlink" title="docker基础"></a>docker基础</h1><ol>
+<li>镜像（image）：一个容器（包括各种服务和环境）的模版<ul>
+<li>镜像相关命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker images :列出本地所有镜像</span><br><span class="line">docker images -aq:列出所有镜像，包括中间层镜像的id(a:列出中间层，q:列出镜像id)</span><br><span class="line">docker search  -s 30 imageName:所有镜像仓库中start大于30的镜像</span><br><span class="line">docker pull imageName: 下载镜像未加版本号默认最新版本</span><br><span class="line">docker rmi -f imageId: 删除某个镜像</span><br><span class="line">docker rmi -f imageName1:Tag1 mageName2:Tag2: 删除多个镜像</span><br><span class="line">docker rmi -f $(docker images -qa): 删除所有镜像</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>容器（container）：一个镜像的实例，通过镜像来进行创建，创建好的容器中有镜像的所有环境和服务<ul>
+<li>容器相关命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -it dockername: 新建容器并分配交互伪终端</span><br><span class="line">dcoker ps(-n ,-l) :列出所有正在运行的容器</span><br><span class="line">docker start imageId: 启动容器</span><br><span class="line">docker restart imageId: 重启容器</span><br><span class="line">docker stop&#x2F;kill imageId: 停止容器</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>仓库（registry）：集中存放镜像到场所，分为私有和共有仓库</li>
+</ol>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hinux.github.io/tags/docker/" rel="tag"># docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hinux.github.io/2020/05/16/hexo-next%E8%B8%A9%E5%9D%91%E7%AF%87/" rel="next" title="hexo-next踩坑篇">
+                <i class="fa fa-chevron-left"></i> hexo-next踩坑篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -348,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -436,6 +610,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#docker基础"><span class="nav-number">1.</span> <span class="nav-text">docker基础</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
