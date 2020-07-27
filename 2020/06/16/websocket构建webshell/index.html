@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="nodejs,websocket,xterm,ssh2," />
 
 
 
@@ -83,15 +83,19 @@
 
 
 
-<meta name="description" content="Try your best">
+<meta name="description" content="前端(vue,websocket,xterm)1. xtermxterm是使用typescript写的一个前端库，可以将终端的数据在网页上显示，完整的webssh还需要后端配合。 2. 插件FitAddon: 用来控制前端终端窗口自适应当前窗口大小。AttachAddon: 参数为weboskcet客户端实例，可以自动实现将前端的键盘输入数据发送给后端。 3. 注意点在进行终端窗口初始化和当前窗口">
 <meta property="og:type" content="article">
 <meta property="og:title" content="websocket构建webshell">
 <meta property="og:url" content="https://xudaqian1.github.io/2020/06/16/websocket%E6%9E%84%E5%BB%BAwebshell/index.html">
 <meta property="og:site_name" content="Hinux的博客">
-<meta property="og:description" content="Try your best">
+<meta property="og:description" content="前端(vue,websocket,xterm)1. xtermxterm是使用typescript写的一个前端库，可以将终端的数据在网页上显示，完整的webssh还需要后端配合。 2. 插件FitAddon: 用来控制前端终端窗口自适应当前窗口大小。AttachAddon: 参数为weboskcet客户端实例，可以自动实现将前端的键盘输入数据发送给后端。 3. 注意点在进行终端窗口初始化和当前窗口">
 <meta property="article:published_time" content="2020-06-16T15:46:47.000Z">
-<meta property="article:modified_time" content="2020-06-16T15:46:47.049Z">
+<meta property="article:modified_time" content="2020-07-27T14:14:35.090Z">
 <meta property="article:author" content="Hinux">
+<meta property="article:tag" content="nodejs">
+<meta property="article:tag" content="websocket">
+<meta property="article:tag" content="xterm">
+<meta property="article:tag" content="ssh2">
 <meta name="twitter:card" content="summary">
 
 
@@ -351,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  1.1k
                 </span>
               
 
@@ -367,7 +371,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  6
                 </span>
               
             </div>
@@ -388,7 +392,14 @@
       
 
       
-        
+        <h1 id="前端-vue-websocket-xterm"><a href="#前端-vue-websocket-xterm" class="headerlink" title="前端(vue,websocket,xterm)"></a>前端(vue,websocket,xterm)</h1><h2 id="1-xterm"><a href="#1-xterm" class="headerlink" title="1. xterm"></a>1. <a href="https://github.com/xtermjs/xterm.js" target="_blank" rel="noopener">xterm</a></h2><p>xterm是使用typescript写的一个前端库，可以将终端的数据在网页上显示，完整的webssh还需要后端配合。</p>
+<h2 id="2-插件"><a href="#2-插件" class="headerlink" title="2. 插件"></a>2. 插件</h2><p>FitAddon: 用来控制前端终端窗口自适应当前窗口大小。<br><br>AttachAddon: 参数为weboskcet客户端实例，可以自动实现将前端的键盘输入数据发送给后端。</p>
+<h2 id="3-注意点"><a href="#3-注意点" class="headerlink" title="3. 注意点"></a>3. 注意点</h2><p>在进行终端窗口初始化和当前窗口大小改变时需要将当前web窗口的row,col传递给后端，从而规定终端输入数据的行数和列数，保证数据的正常显示。</p>
+<h2 id="4-具体代码如下："><a href="#4-具体代码如下：" class="headerlink" title="4. 具体代码如下："></a>4. 具体代码如下：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang&#x3D;&quot;pug&quot;&gt;</span><br><span class="line">    #terminal</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; Terminal &#125; from &#39;xterm&#39;</span><br><span class="line">import &#123; FitAddon &#125; from &#39;xterm-addon-fit&#39;</span><br><span class="line">import &#123; AttachAddon &#125; from &#39;xterm-addon-attach&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#39;Console&#39;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      term: null,</span><br><span class="line">      terminalSocket: null,</span><br><span class="line">      FitAddon: null</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    runRealTerminal () &#123;</span><br><span class="line">      console.log(&#39;webSocket is finished&#39;)</span><br><span class="line">    &#125;,</span><br><span class="line">    errorRealTerminal () &#123;</span><br><span class="line">      console.log(&#39;error&#39;)</span><br><span class="line">    &#125;,</span><br><span class="line">    closeRealTerminal () &#123;</span><br><span class="line">      console.log(&#39;close&#39;)</span><br><span class="line">      window.close()</span><br><span class="line">    &#125;,</span><br><span class="line">    recvRealTerminal (evt) &#123;</span><br><span class="line">      this.term.write(evt.data)</span><br><span class="line">    &#125;,</span><br><span class="line">    beforeDestroy () &#123;</span><br><span class="line">      this.terminalSocket.close()</span><br><span class="line">      this.term.dispose()</span><br><span class="line">    &#125;,</span><br><span class="line">    resizeScreen () &#123;</span><br><span class="line">      if (window.changeSize) clearTimeout(window.changeSize)</span><br><span class="line">      window.changeSize &#x3D; setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">        this.fitAddon.fit()</span><br><span class="line">        this.terminalSocket.send(JSON.stringify(&#123; type: &#39;resize&#39;, size: &#123; cols: this.term.cols, rows: this.term.rows &#125; &#125;))</span><br><span class="line">      &#125;, 500)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted () &#123;</span><br><span class="line">    let terminalContainer &#x3D; document.getElementById(&#39;terminal&#39;)</span><br><span class="line">    this.term &#x3D; new Terminal(&#123; rows: 40 &#125;)</span><br><span class="line">    this.fitAddon &#x3D; new FitAddon()</span><br><span class="line"></span><br><span class="line">    this.term.loadAddon(this.fitAddon)</span><br><span class="line">    this.term.open(terminalContainer)</span><br><span class="line">    this.term.focus()</span><br><span class="line">    this.fitAddon.fit()</span><br><span class="line">    &#x2F;&#x2F; open websocket</span><br><span class="line">    const serverId &#x3D; this.$route.query.serverId</span><br><span class="line">    const serviceId &#x3D; this.$route.query.serviceId</span><br><span class="line">    let wsUrl &#x3D; location.protocol &#x3D;&#x3D;&#x3D; &#39;https:&#39; ? &#39;wss:&#x2F;&#x2F;&#39; : &#39;ws:&#x2F;&#x2F;&#39;</span><br><span class="line">    this.terminalSocket &#x3D; new WebSocket(wsUrl)</span><br><span class="line">    this.terminalSocket.onopen &#x3D; this.runRealTerminal</span><br><span class="line">    this.terminalSocket.onclose &#x3D; this.closeRealTerminal</span><br><span class="line">    this.terminalSocket.onerror &#x3D; this.errorRealTerminal</span><br><span class="line">    this.terminalSocket.onmessage &#x3D; this.recvRealTerminal</span><br><span class="line">    this.term._initialized &#x3D; true</span><br><span class="line">    window.onresize &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      this.resizeScreen()</span><br><span class="line">    &#125;</span><br><span class="line">    this.term.onData((data) &#x3D;&gt; &#123;</span><br><span class="line">      this.terminalSocket.send(JSON.stringify(&#123; type: &#39;terminal_write&#39;, text: data &#125;))</span><br><span class="line">    &#125;)</span><br><span class="line">    console.log(&#39;mounted is going on&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="后端-ws-ssh2"><a href="#后端-ws-ssh2" class="headerlink" title="后端(ws,ssh2)"></a>后端(ws,ssh2)</h1><h2 id="1-ws"><a href="#1-ws" class="headerlink" title="1.ws"></a>1.<a href="https://github.com/websockets/ws" target="_blank" rel="noopener">ws</a></h2><p>nodejs建立ws服务端库，使用简单方便，可以根据需要再建立websocket服务端时对连接对客户端使用verifyClient进行检查连接是否符合要求</p>
+<h2 id="2-ssh2-https-github-com-mscdex-ssh2"><a href="#2-ssh2-https-github-com-mscdex-ssh2" class="headerlink" title="2. (ssh2)[https://github.com/mscdex/ssh2]"></a>2. (ssh2)[<a href="https://github.com/mscdex/ssh2]" target="_blank" rel="noopener">https://github.com/mscdex/ssh2]</a></h2><p>使用nodejs开发的使用ssh协议来操作linux终端的模块</p>
+<h3 id="3-具体代码如下"><a href="#3-具体代码如下" class="headerlink" title="3. 具体代码如下"></a>3. 具体代码如下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">import WebSocket from &#39;ws&#39;</span><br><span class="line">import http from &#39;http&#39;</span><br><span class="line">import &#123; Client, ClientChannel &#125; from &#39;ssh2&#39;</span><br><span class="line">import url from &#39;url&#39;</span><br><span class="line">import ServerDao from &#39;@&#x2F;mongo&#x2F;dao&#x2F;server&#39;</span><br><span class="line">import ServiceDao from &#39;@&#x2F;mongo&#x2F;dao&#x2F;service&#39;</span><br><span class="line">import &#123; callAsync &#125; from &#39;@&#x2F;lib&#x2F;awaitCall&#39;</span><br><span class="line"></span><br><span class="line">class WsService &#123;</span><br><span class="line">  public static async ssh(serverId: string, serviceId: string, rows: number, cols: number, ws: WebSocket) &#123;</span><br><span class="line">    const accountInfo: any &#x3D; &#123;&#125;</span><br><span class="line">    let deployDir &#x3D; &#39;&#39;</span><br><span class="line">    if (serviceId) &#123;</span><br><span class="line">      const [err, service] &#x3D; await callAsync(ServiceDao.findById(serviceId))</span><br><span class="line">      if (err || !service) &#123;</span><br><span class="line">        console.log(err)</span><br><span class="line">        ws.close()</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      accountInfo.host &#x3D; service.serverId.address</span><br><span class="line">      accountInfo.username &#x3D; service.serverId.username</span><br><span class="line">      accountInfo.password &#x3D; service.serverId.password</span><br><span class="line">      deployDir &#x3D; service.deployDir</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      const [err1, server] &#x3D; await callAsync(ServerDao.findById(serverId))</span><br><span class="line">      if (err1 || !server) &#123;</span><br><span class="line">        console.log(err1)</span><br><span class="line">        ws.close()</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      accountInfo.host &#x3D; server.address</span><br><span class="line">      accountInfo.username &#x3D; server.username</span><br><span class="line">      accountInfo.password &#x3D; server.password</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const client &#x3D; new Client()</span><br><span class="line">    client.connect(accountInfo)</span><br><span class="line">    client.on(&#39;ready&#39;, function () &#123;</span><br><span class="line">      client.shell(&#123;</span><br><span class="line">        cols:cols,</span><br><span class="line">        rows:rows,</span><br><span class="line">      &#125;,(err: Error, stream: ClientChannel) &#x3D;&gt; &#123;</span><br><span class="line">        if (deployDir) &#123;</span><br><span class="line">          stream.write(&#96;cd $&#123;deployDir&#125; &amp;&amp; clear \n&#96;)</span><br><span class="line">        &#125;</span><br><span class="line">        if (err) &#123;</span><br><span class="line">          client.end()</span><br><span class="line">        &#125;</span><br><span class="line">        stream.on(&#39;data&#39;, (data: any) &#x3D;&gt; &#123;</span><br><span class="line">          const a&#x3D; data.toString(&#39;utf-8&#39;)</span><br><span class="line">          ws.send(a)</span><br><span class="line">        &#125;)</span><br><span class="line">        stream.on(&#39;close&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">          client.end()</span><br><span class="line">        &#125;)</span><br><span class="line">        stream.on(&#39;exit&#39;, (code) &#x3D;&gt; &#123;</span><br><span class="line">          console.log(&#39;exit coed:&#39;, code)</span><br><span class="line">          client.end()</span><br><span class="line">        &#125;)</span><br><span class="line">        ws.on(&#39;message&#39;, (message: WebSocket.Data) &#x3D;&gt; &#123;</span><br><span class="line">          const cmdObj &#x3D; JSON.parse(message as string)</span><br><span class="line">          if(cmdObj.type &#x3D;&#x3D; &#39;terminal_write&#39;)&#123;</span><br><span class="line">            stream.write(cmdObj.text)</span><br><span class="line"></span><br><span class="line">          &#125;else if(cmdObj.type &#x3D;&#x3D; &#39;resize&#39;)&#123;</span><br><span class="line">            stream.setWindow(cmdObj.size.rows,cmdObj.size.cols,null,null)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    client.on(&#39;end&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">      console.log(&quot;end:连接关闭&quot;)</span><br><span class="line">      ws.close()</span><br><span class="line">    &#125;)</span><br><span class="line">    client.on(&#39;close&#39;, (error) &#x3D;&gt; &#123;</span><br><span class="line">      console.log(&#39;close&#39;, error)</span><br><span class="line">      ws.close()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export default class Message &#123;</span><br><span class="line">  public static wsObject: any &#x3D; &#123;&#125;</span><br><span class="line">  connect(ws: WebSocket, req: http.IncomingMessage) &#123;</span><br><span class="line">    const urlParse &#x3D; url.parse(req.url, true)</span><br><span class="line">    const path &#x3D; urlParse.pathname.split(&#39;&#x2F;&#39;)[1]</span><br><span class="line">    const timestamp &#x3D; String(urlParse.query.timestamp)</span><br><span class="line">    console.log(path)</span><br><span class="line">    switch (path) &#123;</span><br><span class="line">      case &#39;terminal&#39;:</span><br><span class="line">        const serverId &#x3D; urlParse.query.serverId</span><br><span class="line">        const serviceId &#x3D; urlParse.query.serviceId</span><br><span class="line">        const rows &#x3D; parseInt(urlParse.query.rows as string)</span><br><span class="line">        const cols &#x3D; parseInt(urlParse.query.cols as string)</span><br><span class="line">        if (serverId) &#123;</span><br><span class="line">          WsService.ssh(String(serverId), serviceId? String(serviceId): &#39;&#39;, rows, cols, ws)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          console.log(&#39;serverId错误&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">        break;</span><br><span class="line">      default:</span><br><span class="line">        console.log(&#39;未匹配到正确路由&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">    ws.on(&#39;close&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">      if(timestamp) delete Message.wsObject[timestamp]</span><br><span class="line">    &#125;)</span><br><span class="line">    ws.on(&#39;error&#39;, (err) &#x3D;&gt; &#123;</span><br><span class="line">      if(timestamp) delete Message.wsObject[timestamp]</span><br><span class="line">      console.log(&#39;websocket_error&#39;, err)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -402,6 +413,18 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hinux.github.io/tags/nodejs/" rel="tag"># nodejs</a>
+          
+            <a href="/hinux.github.io/tags/websocket/" rel="tag"># websocket</a>
+          
+            <a href="/hinux.github.io/tags/xterm/" rel="tag"># xterm</a>
+          
+            <a href="/hinux.github.io/tags/ssh2/" rel="tag"># ssh2</a>
+          
+        </div>
       
 
       
@@ -476,8 +499,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -518,7 +550,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/hinux.github.io/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -565,6 +597,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端-vue-websocket-xterm"><span class="nav-number">1.</span> <span class="nav-text">前端(vue,websocket,xterm)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-xterm"><span class="nav-number">1.1.</span> <span class="nav-text">1. xterm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-插件"><span class="nav-number">1.2.</span> <span class="nav-text">2. 插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-注意点"><span class="nav-number">1.3.</span> <span class="nav-text">3. 注意点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-具体代码如下："><span class="nav-number">1.4.</span> <span class="nav-text">4. 具体代码如下：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后端-ws-ssh2"><span class="nav-number">2.</span> <span class="nav-text">后端(ws,ssh2)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ws"><span class="nav-number">2.1.</span> <span class="nav-text">1.ws</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ssh2-https-github-com-mscdex-ssh2"><span class="nav-number">2.2.</span> <span class="nav-text">2. (ssh2)[https:&#x2F;&#x2F;github.com&#x2F;mscdex&#x2F;ssh2]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-具体代码如下"><span class="nav-number">2.2.1.</span> <span class="nav-text">3. 具体代码如下</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -592,7 +640,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">2.5k</span>
+    <span title="Site words total count">3.6k</span>
   
 </div>
 
