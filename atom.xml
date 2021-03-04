@@ -6,7 +6,7 @@
   <link href="/hinux.github.io/atom.xml" rel="self"/>
   
   <link href="https://xudaqian1.github.io/"/>
-  <updated>2021-02-18T14:09:12.882Z</updated>
+  <updated>2021-03-04T15:37:22.993Z</updated>
   <id>https://xudaqian1.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vscode自动生成注释</title>
+    <link href="https://xudaqian1.github.io/2021/03/04/vscode%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%B3%A8%E9%87%8A/"/>
+    <id>https://xudaqian1.github.io/2021/03/04/vscode%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%B3%A8%E9%87%8A/</id>
+    <published>2021-03-04T14:46:30.000Z</published>
+    <updated>2021-03-04T15:37:22.993Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行代码开发的过程中对代码对注释是比不可少对，增加注释不仅仅可以使代码更加易懂而且也利于后期对维护，但是由于注释相对来说有些繁琐而导致很多人养成了不写注释对坏习惯，下面是在vscode中使用koroFileHeader插件来自动生成相应的注释</p><h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><ul><li><p>安装koroFileHeader<br>打开vscode,在扩展中查找koroFileHeader插件来进行安装</p></li><li><p>自定义设置<br>在vscode中选择File-&gt;Preferences-&gt;Setting-&gt;搜索fileheader</p><ul><li>设置头部注释：编辑Curosr Made<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> &quot;fileheader.customMade&quot;: &#123;</span><br><span class="line">      &quot;Description&quot;: &quot;&quot;,    &#x2F;&#x2F;描述</span><br><span class="line">      &quot;Version&quot;: &quot;1.0&quot;,     &#x2F;&#x2F;版本</span><br><span class="line">      &quot;Autor&quot;: &quot;xdq&quot;,       &#x2F;&#x2F;作者</span><br><span class="line">      &quot;Date&quot;: &quot;&quot;,          &#x2F;&#x2F;时间</span><br><span class="line">      &quot;LastEditors&quot;: &quot;xdq&quot;,&#x2F;&#x2F;最近修改者 </span><br><span class="line">      &quot;LastEditTime&quot;: &quot;&quot;   &#x2F;&#x2F; 最近修改时间</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">自动生成注释：</span><br><span class="line">  &#x2F;*</span><br><span class="line">  * @Description: test</span><br><span class="line">  * @Version: 1.0</span><br><span class="line">  * @Autor: xdq</span><br><span class="line">  * @Date: 2020-07-12 18:45:32</span><br><span class="line">  * @LastEditors: xdq</span><br><span class="line">  * @LastEditTime: 2021-03-04 23:19:33</span><br><span class="line">  *&#x2F;</span><br></pre></td></tr></table></figure></li><li>设置注释函数：编辑Curosr Mode<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;fileheader.cursorMode&quot;: &#123;</span><br><span class="line">      &quot;description&quot;:&quot;&quot;,  &#x2F;&#x2F; 描述</span><br><span class="line">      &quot;param&quot;: &quot;&quot;,   &#x2F;&#x2F; 参数</span><br><span class="line">      &quot;return&quot;: &quot;&quot;,  &#x2F;&#x2F; 返回值</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">自动生成注释：</span><br><span class="line">  &#x2F;**</span><br><span class="line">  * @description: </span><br><span class="line">  * @param &#123;string&#125; id</span><br><span class="line">  * @return &#123;*&#125;</span><br><span class="line">  *&#x2F;</span><br></pre></td></tr></table></figure></li></ul></li><li><p>快捷键</p><ul><li>自动生成函数注释：window：ctrl+alt+i  mac：ctrl+cmd+i linux: ctrl+meta+i</li><li>自动生成头部注释：window：ctrl+alt+t  mac：ctrl+cmd+t linux: ctrl+meta+t</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;在进行代码开发的过程中对代码对注释是比不可少对，增加注释不仅仅可以使代码更加易懂而且也利于后期对维护，但是由于注释相对来说有些繁琐而导致很多
+      
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="https://xudaqian1.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="杂记" scheme="https://xudaqian1.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode-BiNode</title>
